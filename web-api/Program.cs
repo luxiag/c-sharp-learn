@@ -19,23 +19,27 @@ namespace web_api
 
             builder.Services.AddControllers();
 
-            //builder.Services.AddTransient<ITouristRouteRepository, MockTourisRouteRepository>();
-            builder.Services.AddTransient<ITouristRouteRepository, TouristRouteRepository>();
+            builder.Services.AddTransient<ITouristRouteRepository, MockTourisRouteRepository>();
+            //builder.Services.AddTransient<ITouristRouteRepository, TouristRouteRepository>();
 
 
-            builder.Services.AddDbContext<AppDbContext>(option =>
-            {
-                //SQLService≈‰÷√
-                //option.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FakeXiechengDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
-                //option.UseSqlServer("server=localhost; Database=FakeXiechengDb; User Id=sa; Password=PaSSword12!;");
-                option.UseSqlServer(config["DbContext:ConnectionString"]);
-            });
+
+            //builder.Services.AddDbContext<AppDbContext>(option =>
+            // {
+            //    // SQLService≈‰÷√
+            //     //option.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FakeXiechengDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            //     //option.UseSqlServer("server=localhost; Database=FakeXiechengDb; User Id=sa; Password=PaSSword12!;");
+            //     option.UseSqlServer(config["DbContext:ConnectionString"]);
+            // });
+
+            // EF Core uses this method at design time to access the DbContext
+
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-
+        
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -54,4 +58,7 @@ namespace web_api
             app.Run();
         }
     }
+
+
+
 }

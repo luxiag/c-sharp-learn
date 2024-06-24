@@ -5,7 +5,7 @@ namespace web_api.Services
 {
     public class TouristRouteRepository:ITouristRouteRepository
     {
-        private readonly AppDbContext _context;
+        private  AppDbContext _context;
         public TouristRouteRepository(AppDbContext context)
         {
             _context = context;

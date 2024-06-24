@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web-api", "web-api\web-api.csproj", "{473A890E-C2CF-4B49-B9BF-61EEB2713263}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mcvDemo", "mcvDemo\mcvDemo.csproj", "{A523E62D-2785-4C60-821B-847DDAF7E9E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mcvDemo", "mcvDemo\mcvDemo.csproj", "{A523E62D-2785-4C60-821B-847DDAF7E9E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore-SQLServer", "EFCore-SQLServer\EFCore-SQLServer.csproj", "{AA155421-FBF4-474B-BCA2-92A44A078B3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A523E62D-2785-4C60-821B-847DDAF7E9E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A523E62D-2785-4C60-821B-847DDAF7E9E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A523E62D-2785-4C60-821B-847DDAF7E9E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA155421-FBF4-474B-BCA2-92A44A078B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA155421-FBF4-474B-BCA2-92A44A078B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA155421-FBF4-474B-BCA2-92A44A078B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA155421-FBF4-474B-BCA2-92A44A078B3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
