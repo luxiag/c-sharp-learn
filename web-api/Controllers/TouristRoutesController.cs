@@ -15,6 +15,8 @@ namespace web_api.Controllers
             _touristRouteRepository = touristRouteRepository;
         }
 
+
+
         public IActionResult GerTouristRoute()
         {
             var routes = _touristRouteRepository.GetTouristRoutes();

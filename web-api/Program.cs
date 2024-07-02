@@ -17,7 +17,7 @@ namespace web_api
             var config = app.Configuration;
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            //builder.Services.AddControllers();
 
             builder.Services.AddTransient<ITouristRouteRepository, MockTourisRouteRepository>();
             //builder.Services.AddTransient<ITouristRouteRepository, TouristRouteRepository>();
@@ -39,7 +39,7 @@ namespace web_api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-        
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -54,7 +54,7 @@ namespace web_api
 
 
             app.MapControllers();
-             
+
             app.Run();
         }
     }
