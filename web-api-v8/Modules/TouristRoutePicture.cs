@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace web_api.Modules
+namespace web_api_v8.Modules
 {
     public class TouristRoutePicture
     {

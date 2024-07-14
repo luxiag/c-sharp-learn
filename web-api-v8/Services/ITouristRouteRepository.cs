@@ -1,6 +1,6 @@
-﻿using web_api.Modules;
+﻿using web_api_v8.Modules;
 
-namespace web_api.Services
+namespace web_api_v8.Services
 {
     public interface ITouristRouteRepository
     {

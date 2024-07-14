@@ -1,6 +1,5 @@
-using web_api_v8.Services;
 
-namespace web_api_v8
+namespace Web.API
 {
     public class Program
     {
@@ -9,19 +8,13 @@ namespace web_api_v8
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-           // builder.Services.AddAuthorization();
-            builder.Services.AddControllers();
 
+            builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            //
-            builder.Services.AddTransient<ITouristRouteRepository, MockTourisRouteRepository>();
-            //AddSingleton
-            //AddScoped
 
             var app = builder.Build();
-
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -34,7 +27,6 @@ namespace web_api_v8
 
 
             app.MapControllers();
-
 
             app.Run();
         }

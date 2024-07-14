@@ -1,6 +1,6 @@
-﻿using web_api.Modules;
+﻿using web_api_v8.Modules;
 
-namespace web_api.Services
+namespace web_api_v8.Services
 {
     public class MockTourisRouteRepository: ITouristRouteRepository
     {
@@ -8,6 +8,7 @@ namespace web_api.Services
         public MockTourisRouteRepository() { 
             if( _routes == null )
             {
+                Console.WriteLine("aaa");
                 InitializeTouristRoute();
             }
         }
