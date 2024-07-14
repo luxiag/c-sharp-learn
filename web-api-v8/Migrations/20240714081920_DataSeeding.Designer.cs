@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web_api_v8.Database;
 
@@ -11,9 +12,11 @@ using web_api_v8.Database;
 namespace webapiv8.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240714081920_DataSeeding")]
+    partial class DataSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +33,6 @@ namespace webapiv8.Migrations
 
                     b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<int>("DepartureCity")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DepartureTime")
                         .HasColumnType("datetime(6)");
@@ -60,19 +60,10 @@ namespace webapiv8.Migrations
                     b.Property<decimal>("OriginalPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<double?>("Rating")
-                        .HasColumnType("double");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
-
-                    b.Property<int?>("TravelDays")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TripType")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateTime")
                         .HasColumnType("datetime(6)");
@@ -80,6 +71,19 @@ namespace webapiv8.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TouristRoutes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("5a4cbd41-f969-46e0-b29f-3ea45006844c"),
+                            CreateTime = new DateTime(2024, 7, 14, 8, 19, 20, 217, DateTimeKind.Utc).AddTicks(4127),
+                            Description = "description",
+                            Features = "Test",
+                            Fees = "Test",
+                            Notes = "Test",
+                            OriginalPrice = 0m,
+                            Title = "title"
+                        });
                 });
 
             modelBuilder.Entity("web_api_v8.Modules.TouristRoutePicture", b =>
