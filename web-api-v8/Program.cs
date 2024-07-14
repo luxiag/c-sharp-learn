@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using web_api_v8.Database;
 using web_api_v8.Services;
 
 namespace web_api_v8
@@ -9,7 +11,7 @@ namespace web_api_v8
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-           // builder.Services.AddAuthorization();
+            // builder.Services.AddAuthorization();
             builder.Services.AddControllers();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -19,6 +21,11 @@ namespace web_api_v8
             builder.Services.AddTransient<ITouristRouteRepository, MockTourisRouteRepository>();
             //AddSingleton
             //AddScoped
+            var connectionString = builder.Configuration.GetConnectionString("AppDbConnectionString");
+            builder.Services.AddDbContext<AppDbContext>(option =>
+            {
+                option.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            });
 
             var app = builder.Build();
 
