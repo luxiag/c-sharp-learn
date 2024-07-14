@@ -18,7 +18,9 @@ namespace web_api_v8
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             //
-            builder.Services.AddTransient<ITouristRouteRepository, MockTourisRouteRepository>();
+            //builder.Services.AddTransient<ITouristRouteRepository, MockTourisRouteRepository>();
+            builder.Services.AddTransient<ITouristRouteRepository, TouristRouteRepository>();
+
             //AddSingleton
             //AddScoped
             var connectionString = builder.Configuration.GetConnectionString("AppDbConnectionString");

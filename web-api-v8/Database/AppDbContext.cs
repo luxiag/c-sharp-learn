@@ -10,8 +10,8 @@ namespace web_api_v8.Database
 
         }
 
-        public DbSet<TouristRoute> touristRoutes { get; set; }
+        public DbSet<TouristRoute> TouristRoutes { get; set; }
 
-        public DbSet<TouristRoutePicture> touristRoutesPicture { get; set; }
+        public DbSet<TouristRoutePicture> TouristRoutesPicture { get; set; }
     }
 }
