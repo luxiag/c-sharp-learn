@@ -14,7 +14,7 @@ namespace web_api_v8.Database
 
         public DbSet<TouristRoute> TouristRoutes { get; set; }
 
-        public DbSet<TouristRoutePicture> TouristRoutesPicture { get; set; }
+        public DbSet<TouristRoutePicture> TouristRoutesPictures { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using web_api_v8.Dtos;
 using web_api_v8.Services;
 
 namespace web_api_v8.Controllers
@@ -8,9 +10,11 @@ namespace web_api_v8.Controllers
     public class TouristRoutesController : ControllerBase
     {
         private ITouristRouteRepository _touristRouteRepository;
-        public TouristRoutesController(ITouristRouteRepository touristRouteRepository)
+        private readonly IMapper _mapper;
+        public TouristRoutesController(ITouristRouteRepository touristRouteRepository, IMapper mapper)
         {
             _touristRouteRepository = touristRouteRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -21,7 +25,8 @@ namespace web_api_v8.Controllers
             {
                 return NotFound("没有旅游路线");
             }
-            return Ok(touristRouteFromRepo);
+            var touristRoutesDto = _mapper.Map<IEnumerable<TouristRouteDto>>(touristRouteFromRepo);
+            return Ok(touristRoutesDto);
         }
 
         [HttpGet("{touristRouteId}")]
@@ -32,6 +37,7 @@ namespace web_api_v8.Controllers
             {
                 return NotFound("没有旅游路线");
             }
+            var touristRouteDto = _mapper.Map<TouristRouteDto>(touristRouteFromRepo);
             return Ok(touristRouteFromRepo);
         }
     }

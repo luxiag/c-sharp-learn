@@ -12,7 +12,13 @@ namespace web_api_v8
 
             // Add services to the container.
             // builder.Services.AddAuthorization();
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(setupAction =>
+            {
+                setupAction.ReturnHttpNotAcceptable = true;
+                //setupAction.OutputFormatters.Add(
+                //    new XmlDataContractSerializerOutputFormatter()
+                //    );
+            }).AddXmlDataContractSerializerFormatters();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -28,6 +34,10 @@ namespace web_api_v8
             {
                 option.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             });
+
+
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
             var app = builder.Build();
 
