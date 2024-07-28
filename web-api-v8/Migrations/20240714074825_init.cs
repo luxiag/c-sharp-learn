@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -43,7 +42,7 @@ namespace webapiv8.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "touristRoutesPicture",
+                name: "touristRoutesPictures",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
