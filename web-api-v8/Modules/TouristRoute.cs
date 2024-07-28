@@ -43,5 +43,7 @@ namespace web_api_v8.Modules
         public TripType? TripType { get; set; }
 
         public DepartureCity DepartureCity { get; set; }
+
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using web_api_v8.Database;
+﻿using Microsoft.EntityFrameworkCore;
+using web_api_v8.Database;
 using web_api_v8.Modules;
 
 namespace web_api_v8.Services
@@ -13,11 +14,11 @@ namespace web_api_v8.Services
 
         public TouristRoute GetTouristRoute(Guid touristRouteId)
         {
-            return _context.TouristRoutes.FirstOrDefault(n => n.Id == touristRouteId);
+            return _context.TouristRoutes.Include(t => t.TouristRoutePictures).FirstOrDefault(n => n.Id == touristRouteId);
         }
         public IEnumerable<TouristRoute> GetTouristRoutes()
         {
-            return _context.TouristRoutes;
+            return _context.TouristRoutes.Include(t => t.TouristRoutePictures);
         }
 
         public bool TouristRouteExists(Guid touristRouteId)
