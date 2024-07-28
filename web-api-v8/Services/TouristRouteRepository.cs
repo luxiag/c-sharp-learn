@@ -16,9 +16,34 @@ namespace web_api_v8.Services
         {
             return _context.TouristRoutes.Include(t => t.TouristRoutePictures).FirstOrDefault(n => n.Id == touristRouteId);
         }
-        public IEnumerable<TouristRoute> GetTouristRoutes()
+        public IEnumerable<TouristRoute> GetTouristRoutes(string keyword, string ratingOperator, int ratingValue)
         {
-            return _context.TouristRoutes.Include(t => t.TouristRoutePictures);
+            IQueryable<TouristRoute> result = _context
+                .TouristRoutes
+                .Include(t => t.TouristRoutePictures);
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.Trim();
+                result.Where(t => t.Title.Contains(keyword));
+            }
+
+            if (ratingValue >= 0)
+            {
+                switch (ratingOperator)
+                {
+                    case "largerThan":
+                        result = result.Where(t => t.Rating >= ratingValue);
+                        break;
+                    case "lessThan":
+                        result = result.Where(t => t.Rating <= ratingValue); break;
+                    case "euqalTo":
+                    default:
+                        result = result.Where(t => t.Rating == ratingValue); break;
+                }
+            }
+            return result.ToList();
+            //return _context.TouristRoutes.Include(t => t.TouristRoutePictures);
         }
 
         public bool TouristRouteExists(Guid touristRouteId)

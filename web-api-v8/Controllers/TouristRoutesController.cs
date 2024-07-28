@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 using web_api_v8.Dtos;
 using web_api_v8.Services;
 
@@ -18,9 +19,19 @@ namespace web_api_v8.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetTouristRoutes()
+        [HttpHead]
+        public IActionResult GetTouristRoutes([FromQuery] string keyword, string rating)
         {
-            var touristRouteFromRepo = _touristRouteRepository.GetTouristRoutes();
+            Regex regex = new Regex(@"([A-Za-Z0-9\-]+)(\d+)");
+            string operatorType = "";
+            int raringValue = -1;
+            Match match = regex.Match(rating);
+            if (match.Success)
+            {
+                operatorType = match.Groups[1].Value;
+                rating = match.Groups[2].Value;
+            }
+            var touristRouteFromRepo = _touristRouteRepository.GetTouristRoutes(keyword, operatorType, raringValue);
             if (touristRouteFromRepo == null || touristRouteFromRepo.Count() < 0)
             {
                 return NotFound("没有旅游路线");
@@ -29,6 +40,7 @@ namespace web_api_v8.Controllers
             return Ok(touristRoutesDto);
         }
 
+        //api/touristroutes/{touristRouteId}
         [HttpGet("{touristRouteId}")]
         public IActionResult GetTouristRouteById(Guid touristRouteId)
         {
