@@ -13,5 +13,11 @@ namespace web_api_v8.Services
 
         TouristRoutePicture GetPicture(int pictureId);
 
+        void AddTouristRoute(TouristRoute touristRoute);
+
+        void AddTouristRoutePicture(Guid touristRouteId, TouristRoutePicture touristRoutepicture);
+
+        bool Save();
+
     }
 }

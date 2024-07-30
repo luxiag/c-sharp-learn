@@ -60,5 +60,30 @@ namespace web_api_v8.Services
         {
             return _context.TouristRoutesPictures.Where(p => p.Id == pictureId).FirstOrDefault();
         }
+        public void AddTouristRoute(TouristRoute touristRoute)
+        {
+            if (touristRoute == null)
+            {
+                throw new ArgumentNullException(nameof(touristRoute));
+            }
+            _context.TouristRoutes.Add(touristRoute);
+        }
+        public void AddTouristRoutePicture(Guid touristRouteId, TouristRoutePicture touristRoutePicture)
+        {
+            if ((touristRouteId == Guid.Empty))
+            {
+                throw new ArgumentOutOfRangeException(nameof(touristRouteId));
+            }
+            if (touristRoutePicture == null)
+            {
+                throw new ArgumentOutOfRangeException(nameof(touristRoutePicture));
+            }
+            touristRoutePicture.TouristRouteId = touristRouteId;
+            _context.TouristRoutesPictures.Add(touristRoutePicture);
+        }
+        public bool Save()
+        {
+            return (_context.SaveChanges() > 0);
+        }
     }
 }

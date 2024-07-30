@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using web_api_v8.Dtos;
+using web_api_v8.Modules;
 using web_api_v8.Services;
 
 namespace web_api_v8.Controllers
@@ -33,6 +34,7 @@ namespace web_api_v8.Controllers
             return Ok(_mapper.Map<IEnumerable<TouristRouteRepository>>(picturesFromRepo));
         }
 
+        [HttpGet("{pictureId}", Name = "GetPicture")]
         public IActionResult GetPicture(Guid touristRouteId, int pictureId)
         {
             if (!_touristRouteRepository.TouristRouteExists(touristRouteId))
@@ -45,6 +47,29 @@ namespace web_api_v8.Controllers
                 return NotFound("相片不存在");
             }
             return Ok(_mapper.Map<TouristRoutePictureDto>(pictureFromRepo));
+        }
+
+        [HttpPost]
+        public IActionResult CreateTouristRoutePicture(
+            [FromBody] Guid touristRouteId,
+            [FromBody] TouristRoutePictureForCreationDto touristRoutePictureForCreationDto
+            )
+        {
+            if (!_touristRouteRepository.TouristRouteExists(touristRouteId))
+            {
+                return NotFound("旅游路线不存在");
+            }
+            var pictureModel = _mapper.Map<TouristRoutePicture>(touristRoutePictureForCreationDto);
+            _touristRouteRepository.AddTouristRoutePicture(touristRouteId, pictureModel);
+            _touristRouteRepository.Save();
+            var pictureToReturn = _mapper.Map<TouristRoutePictureDto>(pictureModel);
+            return CreatedAtRoute("GetPicture", new
+            {
+                touristRouteId = pictureModel.TouristRouteId,
+                pictureId = pictureModel.Id
+            },
+            pictureToReturn
+            );
         }
     }
 }

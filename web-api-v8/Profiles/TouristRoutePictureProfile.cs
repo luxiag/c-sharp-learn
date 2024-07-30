@@ -9,6 +9,7 @@ namespace web_api_v8.Profiles
         public TouristRoutePictureProfile()
         {
             CreateMap<TouristRoutePicture, TouristRoutePictureDto>();
+            CreateMap<TouristRoutePictureForCreationDto, TouristRoutePicture>();
         }
     }
 }

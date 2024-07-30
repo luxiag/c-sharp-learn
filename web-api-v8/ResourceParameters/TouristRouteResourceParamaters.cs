@@ -5,11 +5,7 @@ namespace web_api_v8.ResourceParameters
     public class TouristRouteResourceParamaters
     {
         public string Keyword { get; set; }
-
-
-
         public string RatingOperator { get; set; }
-
         public int? RatingValue { get; set; }
         private string _rating;
 

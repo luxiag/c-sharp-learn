@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using web_api_v8.Dtos;
+using web_api_v8.Modules;
 using web_api_v8.ResourceParameters;
 using web_api_v8.Services;
 
@@ -43,6 +44,20 @@ namespace web_api_v8.Controllers
             }
             var touristRouteDto = _mapper.Map<TouristRouteDto>(touristRouteFromRepo);
             return Ok(touristRouteFromRepo);
+        }
+
+        [HttpPost]
+        public IActionResult CreateTouristRoute([FromBody] TouristRouteForCreationDto touristRouteForCreationDto)
+        {
+            var touristRouteModel = _mapper.Map<TouristRoute>(touristRouteForCreationDto);
+            _touristRouteRepository.AddTouristRoute(touristRouteModel);
+            _touristRouteRepository.Save();
+            var touristRouteToReture = _mapper.Map<TouristRouteDto>(touristRouteModel);
+            return CreatedAtRoute("GetTouristRouteById",
+                new { touristRouteId = touristRouteToReture.Id },
+                touristRouteToReture
+                );
+
         }
     }
 }
