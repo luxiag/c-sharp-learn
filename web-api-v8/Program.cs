@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using web_api_v8.Database;
 using web_api_v8.Services;
@@ -18,7 +19,25 @@ namespace web_api_v8
                 //setupAction.OutputFormatters.Add(
                 //    new XmlDataContractSerializerOutputFormatter()
                 //    );
-            }).AddXmlDataContractSerializerFormatters();
+            }).AddXmlDataContractSerializerFormatters().ConfigureApiBehaviorOptions(setupAction =>
+            {
+                setupAction.InvalidModelStateResponseFactory = context =>
+                {
+                    var problemDetail = new ValidationProblemDetails(context.ModelState)
+                    {
+                        Type = "无所谓",
+                        Title = "数据验证失败",
+                        Status = StatusCodes.Status422UnprocessableEntity,
+                        Detail = "请看详细说明",
+                        Instance = context.HttpContext.Request.Path
+                    };
+                    problemDetail.Extensions.Add("traceId", context.HttpContext.TraceIdentifier);
+                    return new UnprocessableEntityObjectResult(problemDetail)
+                    {
+                        ContentTypes = { "application/problem+json" }
+                    };
+                };
+            });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

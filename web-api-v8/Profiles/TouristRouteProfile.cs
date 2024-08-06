@@ -21,6 +21,7 @@ namespace web_api_v8.Profiles
                 opt => opt.MapFrom(src => Guid.NewGuid())
                 );
 
+            CreateMap<TouristRouteForUpdateDto, TouristRoute>();
         }
     }
 }

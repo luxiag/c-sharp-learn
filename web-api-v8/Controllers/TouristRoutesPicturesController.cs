@@ -51,7 +51,7 @@ namespace web_api_v8.Controllers
 
         [HttpPost]
         public IActionResult CreateTouristRoutePicture(
-            [FromBody] Guid touristRouteId,
+            Guid touristRouteId,
             [FromBody] TouristRoutePictureForCreationDto touristRoutePictureForCreationDto
             )
         {
