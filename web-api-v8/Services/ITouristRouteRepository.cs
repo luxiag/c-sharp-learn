@@ -17,6 +17,10 @@ namespace web_api_v8.Services
 
         void AddTouristRoutePicture(Guid touristRouteId, TouristRoutePicture touristRoutepicture);
 
+        void DeleteTouristRoute(TouristRoute touristRoute);
+
+        void DeleteTouristRoutePicture(TouristRoutePicture picture);
+
         bool Save();
 
     }

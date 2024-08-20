@@ -1,4 +1,4 @@
-﻿namespace web_api_v8.Dtos
+﻿ namespace web_api_v8.Dtos
 {
     public class TouristRoutePictureForCreationDto
     {

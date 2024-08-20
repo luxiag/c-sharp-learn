@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOP", "base\OOP.csproj", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IOC", "IOC\IOC.csproj", "{53184DED-AF52-4443-AAD0-61EA42560B31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.API", "Web.API\Web.API.csproj", "{6729D007-D8BB-4A00-9787-C788DEA8B75F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.API", "Web.API\Web.API.csproj", "{6729D007-D8BB-4A00-9787-C788DEA8B75F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "grammer", "grammer", "{C93A5FDE-4355-44B8-A324-444D287DD517}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +50,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{849CDA5D-E76A-4851-8A4A-49E1743546A3} = {C93A5FDE-4355-44B8-A324-444D287DD517}
+		{53184DED-AF52-4443-AAD0-61EA42560B31} = {C93A5FDE-4355-44B8-A324-444D287DD517}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07D0F979-C6DF-4F96-B476-F3A2CC149CF8}

@@ -22,6 +22,7 @@ namespace web_api_v8.Profiles
                 );
 
             CreateMap<TouristRouteForUpdateDto, TouristRoute>();
+            CreateMap<TouristRoute, TouristRouteForUpdateDto>();
         }
     }
 }

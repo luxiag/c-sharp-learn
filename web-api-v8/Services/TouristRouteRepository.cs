@@ -81,6 +81,16 @@ namespace web_api_v8.Services
             touristRoutePicture.TouristRouteId = touristRouteId;
             _context.TouristRoutesPictures.Add(touristRoutePicture);
         }
+
+        public void DeleteTouristRoute(TouristRoute touristRoute)
+        {
+            _context.TouristRoutes.Remove(touristRoute);
+        }
+
+        public void DeleteTouristRoutePicture(TouristRoutePicture picture)
+        {
+            _context.TouristRoutesPictures.Remove(picture);
+        }
         public bool Save()
         {
             return (_context.SaveChanges() > 0);
